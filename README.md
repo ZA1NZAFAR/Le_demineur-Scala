@@ -84,6 +84,6 @@ Vous avez désormais la base de la logique du démineur. Vous êtes libres d’a
 vous le souhaitez (interface conviviale, marqueurs pour les cases, génération au premier coup pour qu’il ne
 soit pas un échec . . .).
 
-Credits : 
-@zzssrko
+Authors : 
 @mrykse
+@zzssrko
