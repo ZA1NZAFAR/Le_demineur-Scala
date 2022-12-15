@@ -83,3 +83,7 @@ interagi avec chacun des coins.
 Vous avez désormais la base de la logique du démineur. Vous êtes libres d’ajouter des fonctionnalités si
 vous le souhaitez (interface conviviale, marqueurs pour les cases, génération au premier coup pour qu’il ne
 soit pas un échec . . .).
+
+Credits : 
+@zzssrko
+@mrykse
