@@ -34,6 +34,7 @@ object Partie {
       j <- 0 until numCols
     } {
       val cell = m(i)(j)
+      print("| ")
       if (cell.isFlagged) {
         print("F ")
       } else if (cell.isRevealed) {
@@ -43,7 +44,7 @@ object Partie {
           print(s"${cell.value} ")
         }
       } else {
-        print("* ")
+        print("| ")
       }
 
       if (j == numCols - 1) {

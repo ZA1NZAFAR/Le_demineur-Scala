@@ -2,8 +2,8 @@ object Main {
   def main(args: Array[String]): Unit = {
     val game = Partie
 
-    // Initialiser le jeu avec une grille de 10x10 cases et 10 mines
-    val grid = game.init_game(10, 10, 10)
+    // Initialiser le jeu avec une grille de 40x10 cases et 50 mines
+    val grid = game.init_game(40, 10, 50)
 
     // Boucle de jeu
     var gameOver = false
