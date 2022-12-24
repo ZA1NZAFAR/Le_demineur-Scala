@@ -1,6 +1,7 @@
-import scala.annotation.unused
-
 class Case(var isMine: Boolean, var isRevealed: Boolean = false, var isFlagged: Boolean = false, var coordinates: (Int, Int)) {
+  // déclaration de la variable value
+  var value: Int = 0
+
   def reveal(): Unit = {
     isRevealed = true
   }
@@ -17,8 +18,6 @@ class Case(var isMine: Boolean, var isRevealed: Boolean = false, var isFlagged: 
     isFlagged = !isFlagged
   }
 
-  // (?) maybe we can use them later, when we gonna begin the implementation of the game with the functions
-
   def setCoordinates(x: Int, y: Int): (Int, Int) = {
     val coordinate = (x, y)
     coordinate
@@ -26,5 +25,11 @@ class Case(var isMine: Boolean, var isRevealed: Boolean = false, var isFlagged: 
   def getCoordinates: (Int, Int) = {
     coordinates
   }
+  def incrementValue(): Unit = {
+    value += 1
+  }
 
+  def setMine(): Unit = {
+    this.isMine = true
+  }
 }

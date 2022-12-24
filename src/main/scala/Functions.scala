@@ -14,7 +14,7 @@ class Functions {
       /7/
       So, here we'll need to take 3 as the number of columns, as it's the max length value that "satisfy" all the other
    */
-  def get_dimension(m: Seq[Seq[Int]]): (Int, Int) = {
+  def get_dimension(m: Seq[Seq[Case]]): (Int, Int) = {
     // (?) maybe we can use tha class empty for the following ???
     if (m.isEmpty) return (0, 0)
     val rowNumber = m.length
@@ -22,17 +22,21 @@ class Functions {
     (rowNumber, columnNumber)
   }
 
+
   // Here we'll just return true if the x and y value of the given coordinates is in the defined matrix.
   //First, we "extract" x and y value from the "coordinate" tuple, then we check if the "mathematical condition" for a matrix is satisfied
-  def is_inside(m: Seq[Seq[Int]], coordinates: (Int, Int)): Boolean = {
-    val (x, y) = coordinates
-    if ((0 < x && x < m.length) && (0 < y && y < m(x).length)) {
-      return true
-    }
-    false
+  def is_inside(m: Seq[Seq[Case]], coordinates: (Int, Int)): Boolean = {
+    val (row, col) = coordinates
+    val numRows = m.length
+    val numCols = m.head.length
+
+    row >= 0 && row < numRows && col >= 0 && col < numCols
   }
 
-  def get_neighbors(m: Seq[Seq[Int]], coordinates: (Int, Int)): Seq[(Int, Int)] = {
+
+
+
+  def get_neighbors(m: Seq[Seq[Case]], coordinates: (Int, Int)): Seq[(Int, Int)] = {
     val (row, col) = coordinates
     val numRows = m.length
     val numCols = m.head.length
@@ -46,8 +50,7 @@ class Functions {
     val neighbors = Seq((row + 1, col + 1), (row + 1, col), (row + 1, col - 1), (row, col + 1), (row, col - 1), (row - 1, col + 1), (row - 1, col), (row - 1, col - 1))
 
     // Of course, we need to check that all the neighbors are inside the matrix :
-    val validNeighbors = neighbors.filter(is_inside(m, _))
-
+    val validNeighbors = neighbors.filter(coordinates => is_inside(m, coordinates))
     //We'll study all the different cases that are possible :
     // The corners :
     // case 1 : In the top right corner :
@@ -92,12 +95,16 @@ class Functions {
 
   // For generate random coordinates, we'll use the random function between the dimensions of the matrix. If the given
   // values isn't inside "the valid dimensions" of the matrix, we'll regenerate it until it is, then return this valid coordinate:
-  def randoms_coords(m: Seq[Seq[Int]]): (Int, Int) = {
+  def randoms_coords(m: Seq[Seq[Case]]): (Int, Int) = {
     val (rowNumber, columnsNumber) = get_dimension(m)
     var randomCoordinates = (Random.nextInt(rowNumber), Random.nextInt(columnsNumber))
-    while (!is_inside(m, randomCoordinates)) {
+    var counter = 0
+    while (!is_inside(m, randomCoordinates) && counter < 1000) {
       randomCoordinates = (Random.nextInt(rowNumber), Random.nextInt(columnsNumber))
+      counter += 1
     }
     randomCoordinates
   }
+
+
 }
