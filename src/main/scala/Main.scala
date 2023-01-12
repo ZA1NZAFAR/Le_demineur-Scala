@@ -1,3 +1,5 @@
+import java.lang
+
 object Main {
   def main(args: Array[String]): Unit = {
     val game = Partie
@@ -12,19 +14,32 @@ object Main {
       game.display_grid(grid)
 
       // Demandez à l'utilisateur de sélectionner les coordonnées de la case à révéler
-      println("Veuillez entrer les coordonnées de la case à révéler (x y) :")
-      val coords = scala.io.StdIn.readLine().split(" ").map(_.toInt)
+      var coor_x: Int = 0
+      var coor_y: Int = 0
+      var input_correct = false
+      while (!input_correct) {
+        try {
+          println("Veuillez entrer la valeur de x : ")
+          coor_x = scala.io.StdIn.readInt()
+          println("Veuillez entrer la valeur de y : ")
+          coor_y = scala.io.StdIn.readInt()
+          input_correct = true
+        } catch {
+          case _: Exception =>
+            println("Enter valid value please")
+        }
+      }
 
       // Révélez la case et mettez à jour le nombre de mines restantes à trouver
-      gameOver = game.reveal_case(grid, coords(0), coords(1))
+      gameOver = game.reveal_case(grid, coor_x, coor_y)
     }
 
     // Afficher le résultat final
     game.display_grid(grid)
     if (game.won(grid)) {
-      println("Félicitations, vous avez gagné!")
+      println("Wow, you just ....... won!")
     } else {
-      println("Désolé, vous avez perdu.")
+      println("Oops you just stepped on a mine :(")
     }
   }
 }
