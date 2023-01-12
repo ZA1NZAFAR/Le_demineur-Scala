@@ -3,7 +3,7 @@ object Main {
     val game = Partie
 
     // Initialiser le jeu avec une grille de 40x10 cases et 50 mines
-    val grid = game.init_game(40, 10, 50)
+    val grid = game.init_game(10, 10, 10)
 
     // Boucle de jeu
     var gameOver = false

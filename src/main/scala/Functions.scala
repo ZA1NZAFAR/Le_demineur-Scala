@@ -34,8 +34,6 @@ class Functions {
   }
 
 
-
-
   def get_neighbors(m: Seq[Seq[Case]], coordinates: (Int, Int)): Seq[(Int, Int)] = {
     val (row, col) = coordinates
     val numRows = m.length

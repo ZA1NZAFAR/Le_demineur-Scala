@@ -13,7 +13,7 @@ class Minesweeper(val grid: Seq[Seq[Case]]) {
       val cell = grid(i)(j)
       if (cell.isRevealed) {
         cell match {
-          case `mine` => print("*")
+          case `mine` => print("X")
           case `empty` => print(empty.adjacentMines)
         }
       } else if (cell.isFlagged) print("F")
@@ -27,7 +27,7 @@ class Minesweeper(val grid: Seq[Seq[Case]]) {
   def interact(x: Int, y: Int): Unit = {
     val cell = grid(x)(y)
     cell match {
-      case mine: Mine =>
+      case mine : Mine =>
         println("You lost!")
         sys.exit(1)
       case empty: Empty =>

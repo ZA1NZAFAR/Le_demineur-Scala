@@ -6,3 +6,5 @@ lazy val root = (project in file("."))
   .settings(
     name := "Scala_TPNote"
   )
+
+libraryDependencies += "org.openjfx" % "javafx-controls" % "14.0.1"

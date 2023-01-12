@@ -8,7 +8,7 @@ object Partie {
     if (!m(x)(y).isMine) m(x)(y).incrementValue()
   }
 
-
+// utiliser celui défini dans "Functions"
   def random_mine(m: Seq[Seq[Case]]): Unit = {
     val (numRows, numCols) = functions.get_dimension(m) // La fonction get_dimension se trouve dans l'objet "Partie"
     val emptySpots = for {
@@ -27,6 +27,7 @@ object Partie {
     }
   }
 
+  // Plus cohérent de placer display du grid ici ? Dans l'énoncé : indiquer d'utiliser celui dans Mineweeper
   def display_grid(m: Seq[Seq[Case]]): Unit = {
     val (numRows, numCols) = functions.get_dimension(m)
     for {
@@ -34,7 +35,7 @@ object Partie {
       j <- 0 until numCols
     } {
       val cell = m(i)(j)
-      print("| ")
+      print(" ")
       if (cell.isFlagged) {
         print("F ")
       } else if (cell.isRevealed) {
