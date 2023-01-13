@@ -51,6 +51,7 @@ object Utilitaire {
   }
 
   // Allow to fill the grid with the number of mines given and to set the value of each case (number of mines around it)
+  // In the subject we were asked to check the neighbours every time user asked to reveal a case, but here we'll do it once for better performance
   def fillGrid(m: Seq[Seq[Case]]): Unit = {
     val (numRows, numCols) = get_dimension(m) // La fonction get_dimension se trouve dans l'objet "Partie"
     val emptySpots = for {
