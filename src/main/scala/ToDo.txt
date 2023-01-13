@@ -1,5 +1,0 @@
-1. In case the person give twice the same coordinates => indicate that it's already discovered
-
-2. Ability to implement the person’s score until they lose
-
-...

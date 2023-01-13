@@ -1,42 +1,58 @@
-import java.lang
+/*
+Authors :
+    Meryem KOSE
+    Ousseynou SAKHO
+    Zain ZAFAR
+ */
+
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val game = Partie
+    // initialize the game with user responses
+    println("Number of rows ? :")
+    val rows = Utilitaire.getIntFromUser()
+    println("Number of columns ? :")
+    val columns = Utilitaire.getIntFromUser()
+    println("Number of mines to place? :")
+    val mines = Utilitaire.getIntFromUser(0, rows * columns)
 
-    // Initialiser le jeu avec une grille de 40x10 cases et 50 mines
-    val grid = game.init_game(10, 10, 10)
+    // initialize the game
+    val game = new Minesweeper(rows, columns, mines)
+
 
     // Boucle de jeu
     var gameOver = false
     while (!gameOver) {
       // Afficher la grille actuelle
-      game.display_grid(grid)
+      game.display()
 
       // Demandez à l'utilisateur de sélectionner les coordonnées de la case à révéler
-      var coor_x: Int = 0
-      var coor_y: Int = 0
+      var row: Int = 0
+      var column: Int = 0
       var input_correct = false
       while (!input_correct) {
         try {
-          println("Veuillez entrer la valeur de x : ")
-          coor_x = scala.io.StdIn.readInt()
-          println("Veuillez entrer la valeur de y : ")
-          coor_y = scala.io.StdIn.readInt()
+          println("Choose row number : (Starting from 1)")
+          row = Utilitaire.getIntFromUser(1, rows) - 1
+          println("Choose column number : (Starting from 1)")
+          column = Utilitaire.getIntFromUser(1, columns) - 1
+          if (row < 0 || column < 0 || row >= rows || column >= columns) {
+            throw new Exception()
+          }
           input_correct = true
         } catch {
           case _: Exception =>
-            println("Enter valid value please")
+            println("Invalid input, please enter a valid row and column number")
         }
       }
 
       // Révélez la case et mettez à jour le nombre de mines restantes à trouver
-      gameOver = game.reveal_case(grid, coor_x, coor_y)
+      gameOver = game.reveal_case(row, column)
     }
 
     // Afficher le résultat final
-    game.display_grid(grid)
-    if (game.won(grid)) {
+    game.display()
+    if (Utilitaire.won(game.grid)) {
       println("Wow, you just ....... won!")
     } else {
       println("Oops you just stepped on a mine :(")
